@@ -1,0 +1,14 @@
+{
+  "include": ["./src/**/*"],
+  "exclude": ["./src/examples/**/*"],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es6", "dom"],
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true
+  }
+}

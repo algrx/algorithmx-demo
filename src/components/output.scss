@@ -1,0 +1,53 @@
+@import './variables';
+
+.output-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .paneheader { flex-shrink: 0; }
+}
+
+.output {
+  flex: auto;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: inset 0px 0px 20px 0px rgba(0, 0, 0, 0.6);
+}
+
+.output-bar {
+  height: 40px;
+  padding-left: 15px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+  background-color: $color-dark-gray;
+  border-top: 1px solid $color-very-dark-gray;
+}
+
+.output-btn {
+  width: 25px;
+  height: 25px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  font-size: 0.9em;
+  color: $color-primary;
+}
+
+.output-btn-loading {
+  cursor: inherit;
+  font-size: 1.0em;
+}
+.output-btn-inactive {
+  color: rgba($color-primary, 0.4);
+  cursor: inherit;
+}
+.output-btn-rotate {
+  transform: rotate(360deg);
+  transition: transform 0.5s ease;
+}

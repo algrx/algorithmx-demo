@@ -1,0 +1,16 @@
+# dependencies
+node_modules/
+
+# production
+public/
+
+# brython
+brython/_*
+__pycache__/
+
+# misc
+*.cache
+*_cache
+package-lock.json
+*.log
+.DS_Store

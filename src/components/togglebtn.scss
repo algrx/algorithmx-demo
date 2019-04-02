@@ -1,0 +1,43 @@
+@import './variables';
+
+$togglebtn-r: 6px;
+
+.togglebtn {
+  width: 16px;
+  height: 16px;
+  backface-visibility: hidden;
+}
+
+.togglebtn-svg {
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.togglebtn-circle {
+  cx: 8;
+  cy: 8;
+  r: $togglebtn-r;
+  stroke-width: 1px;
+  stroke: $color-primary;
+  fill: none;
+
+  transition: r 0.2s ease;
+}
+
+.togglebtn-overlay {
+  cx: 8;
+  cy: 8;
+  position: absolute;
+  fill: $color-primary;
+
+  r: 0;
+  transition: r 0.2s ease;
+}
+
+.togglebtn-on {
+  .togglebtn-overlay {
+    r: $togglebtn-r - 3;
+    transition: r 0.2s ease;
+  }
+}

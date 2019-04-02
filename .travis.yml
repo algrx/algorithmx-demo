@@ -1,0 +1,34 @@
+language: python
+
+node_js:
+- stable
+
+python:
+- 3.6
+
+cache:
+  directories:
+  - node_modules
+
+branches:
+  only:
+  - master
+
+install:
+- npm install
+
+jobs:
+  include:
+  - stage: build
+    script: npm run test && brython/install.sh && npm run build:prod
+
+deploy:
+  provider: script
+  script: npx node scripts/deploy.js
+  skip_cleanup: true
+
+env:
+  global:
+  - GITHUB_REPO: "algrx/algorithmx-demo"
+  # GITHUB_TOKEN
+  - secure: "i3K9itYwULA6BzsYidx7xo5u7rJBXKdzP9WNLphRObnq7olfSZAHCTKeJHT1iRyAECWBKFXtHqR4bNbwgfQTF0YfOGu/pIJKk6XG6OjQmnJT4d5zUOXv19nUXL5ysCebPyTxxd7rMD/Si4q+CxH/VsgtyEnW9Rl0ukfQvFHTXMdUA0Oe/uBiQl/PddGH2k/AFuIpI5qDY/EbYorY/agDlWWWdY1NjiazjFgCLhIz72BqclC7V57x4aNPrOJkhLuHw1hBHlOcHGcCwNJF0arx2Cp+Q/LCEIrEXo/nz8TWeRbNlfTUoS31bt/5bBvdVNh15zFYqNWwFVorCvZbO8dWC+cnQi1VBY2qLeYZMupldJeghjZAJ1Uv3utXwLiiDrgngOhPTQIY2gvzQ3eIPquJBU7dM34Wj37c8dBYi0OxWLgDCee+gBb/gQwyYW8q5I/y0JLEIR2BCUBbNKc5XWoeLp5GZDD+Frnrj3w24gV2aOL0Fd7bLM2/RdLgRvTt3Kj7/bkqVR6e7qVKRcJ9sNBwMsdw6cL8w3Qiz6NH7bbshHIau0Hcv4wafnV+dXw2Z/xMRxSGsRa0TH3YPeZvcNMSS5UyX7SVWd80p7pnP+lni6sWQdUqm4+Q7E2RE5bQnjdPqfgZc6YUwKcSypO/4mPBz7QjbMH/BNRoDL91d/jR0C8="

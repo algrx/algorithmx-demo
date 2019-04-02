@@ -1,0 +1,17 @@
+@import './variables';
+
+.btn {
+  min-width: 30px;
+  height: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: $color-primary;
+  font: $font-weight-bold 0.7em $font-primary;
+  border: 1px solid $color-primary;
+  border-radius: 6px;
+  cursor: pointer;
+}

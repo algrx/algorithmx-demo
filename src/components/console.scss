@@ -1,0 +1,33 @@
+@import './variables';
+
+.console-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .paneheader { flex-shrink: 0; }
+}
+
+.console-outer {
+  flex: auto;
+  background-color: $color-dark-gray;
+}
+
+.console {
+  height: 100%;
+  padding: 5px 10px 10px 10px;
+  overflow-y: auto;
+  background-color: $color-very-dark-gray;
+}
+
+.console-text {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-right: 10px;
+  color: $color-dark-white;
+  font: $font-weight-regular 0.8em $font-mono;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.console-text-error {
+  color: $color-red;
+}
