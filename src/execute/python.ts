@@ -30,15 +30,6 @@ const createOutput = (onOut: (msg: string) => void): BrythonOutput => ({
   flush: () => {/* */}
 })
 
-type WindowErrFn = typeof window.onerror
-const originalWindowErrFn = window.onerror
-
-const createWindowErrFn = (originalFn: WindowErrFn): WindowErrFn => {
-  return (event, ...args: any[]) => {
-    if (originalFn) originalFn(event, ...args)
-  }
-}
-
 export const executePython = (args: ExecuteArgs): void => {
   const globalClientId = '__algorithmx_client__'
   const globalCodeId = '__algorithmx_code__'
@@ -79,6 +70,6 @@ exec(code, globals(), {'canvas': canvas})
   try {
     __BRYTHON__.run_script(fullScript, 'demo', 'main')
   } catch (err) {
-    console.log(err)
+    args.onErr(String(err))
   }
 }
