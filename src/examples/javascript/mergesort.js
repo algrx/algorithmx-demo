@@ -65,7 +65,7 @@ function animateMerge(left, right, index, level) {
     return result
 }
 
-function mergesort(array, index=0, level=null) {
+function mergeSort(array, index=0, level=null) {
     level = level === null ? Math.ceil(Math.log2(array.length)) : level
 
     if (array.length == 1) {
@@ -74,8 +74,8 @@ function mergesort(array, index=0, level=null) {
         return array
     }
     const splitIndex = Math.floor(array.length / 2)
-    const left = mergesort(array.slice(0, splitIndex), index, level - 1)
-    const right = mergesort(array.slice(splitIndex), index + splitIndex, level - 1)
+    const left = mergeSort(array.slice(0, splitIndex), index, level - 1)
+    const right = mergeSort(array.slice(splitIndex), index + splitIndex, level - 1)
 
     return animateMerge(left, right, index, level)
 }
@@ -89,4 +89,4 @@ canvas.nodes(topIds).add()
         .text(n => n)
 
 canvas.pause(1)
-mergesort(unsorted)
+mergeSort(unsorted)

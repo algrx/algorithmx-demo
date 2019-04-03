@@ -61,7 +61,7 @@ def animate_merge(left, right, index, level):
 
     return result
 
-def mergesort(array, index=0, level=None):
+def merge_sort(array, index=0, level=None):
     level = math.ceil(math.log2(len(array))) if level is None else level
 
     if len(array) == 1:
@@ -70,8 +70,8 @@ def mergesort(array, index=0, level=None):
         return array
 
     split_index = len(array) // 2
-    left = mergesort(array[0:split_index], index, level - 1)
-    right = mergesort(array[split_index:], index + split_index, level - 1)
+    left = merge_sort(array[0:split_index], index, level - 1)
+    right = merge_sort(array[split_index:], index + split_index, level - 1)
 
     return animate_merge(left, right, index, level)
 
@@ -84,4 +84,4 @@ canvas.nodes(top_ids).add() \
         .text(lambda n: n)
 
 canvas.pause(1)
-mergesort(unsorted)
+merge_sort(unsorted)
