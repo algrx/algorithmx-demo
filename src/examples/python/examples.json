@@ -6,5 +6,21 @@
       "name": "Alex Socha",
       "url": "https://github.com/alexsocha"
     }
+  },
+  {
+    "file": "mergesort.py",
+    "name": "Merge Sort",
+    "author": {
+      "name": "Alex Socha",
+      "url": "https://github.com/alexsocha"
+    }
+  },
+  {
+    "file": "maze.py",
+    "name": "Maze Solver",
+    "author": {
+      "name": "Alex Socha",
+      "url": "https://github.com/alexsocha"
+    }
   }
 ]

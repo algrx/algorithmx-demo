@@ -1,8 +1,9 @@
-// DFS Algorithm
+// Depth First Search
 
 // Generate a random graph
+Math.seed(28)
 const G = jsnx.fastGnpRandomGraph(10, 0.3)
-for (let n of G) G[n] = {seen: false}
+for (let n of G) G.node[n] = {seen: false}
 
 // Render graph
 canvas.nodes(G.nodes()).add().label().text('')
@@ -11,14 +12,14 @@ canvas.pause(1)
 
 // Recursive DFS function
 function dfs(n) {
-    G[n].seen = true
+    G.node[n].seen = true
 
     canvas.node(n).highlight().size('1.25x')
     canvas.node(n).color('blue')
     canvas.pause(0.5)
 
     for (let n2 of G.neighbors(n)) {
-        if (G[n2].seen)
+        if (G.node[n2].seen)
             continue
         canvas.edge([n, n2]).traverse().color('red').pause(0.5)
         dfs(n2) // DFS on neighbor

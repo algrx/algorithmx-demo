@@ -5,6 +5,7 @@ interface BrythonOutput {
 
 interface Brython {
   readonly run_script: (src: string, name?: string, execNamespace?: string) => void
+  readonly $getattr: (obj: {}, name: string) => unknown
   stdout: BrythonOutput
   stderr: BrythonOutput
 }

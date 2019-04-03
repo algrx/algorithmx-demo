@@ -34,3 +34,13 @@ def remove_yield(inner_fn_text):
     return '    _yield_list = []\n' \
         + re.sub(r'yield (.*)', r'_yield_list.append(\1)', inner_fn_text) \
         + '    return iter(_yield_list)\n'
+
+INDENT = '    '
+
+def replace_inner_indent(text, pre_indent_line, replace_indent_fn):
+    def regex_replace(match):
+        indent = match.group(1) + INDENT
+        return re.sub(r'(.*\n)((?:' + indent + r'.*\n)*)',
+            lambda m: m.group(1) + replace_indent_fn(m.group(2), indent), match.group(0), count=1)
+
+    return re.sub(r'( *)' + pre_indent_line + r'\n(?: .*\n)*', regex_replace, text, flags=re.M)
