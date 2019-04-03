@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-/// <reference path="../declarations/split.d.ts"/>
 import Split from 'react-split'
 
 import { EditorConnected } from './editor'

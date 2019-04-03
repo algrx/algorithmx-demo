@@ -51,7 +51,7 @@ export const projectStore: ProjectStore = {
 }
 
 export const defaultProjectFiles: { readonly [k in PLang]: string } = {
-  [PLang.JS]: 'mergesort.js',
+  [PLang.JS]: 'dfs.js',
   [PLang.Python]: 'dfs.py'
 }
 

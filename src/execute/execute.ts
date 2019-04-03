@@ -1,11 +1,8 @@
 import { PLang } from '../state/plang'
 import { AlgrXState, CanvasSelection, EventHandler, createEventHandler, createCanvasSelection } from './algorithmx'
+import { executeJS } from './javascript'
 import { executePython } from './python'
 import { ensureExecuteId } from './utils'
-/// <reference path="../declarations/babelstandalone.d.ts"/>
-import * as Babel from '@babel/standalone'
-/// <reference path="../declarations/jsnetworkx.d.ts"/>
-import * as jsnx from 'jsnetworkx'
 
 export interface InitExecuteArgs {
   readonly algrxState: AlgrXState
@@ -24,21 +21,6 @@ export interface ExecuteArgs {
   readonly executeId: string
   readonly onOut: (msg: string) => void
   readonly onErr: (msg: string) => void
-}
-
-export const executeJS = (args: ExecuteArgs): void => {
-  const newConsole = {
-    ...console,
-    log: (msg: unknown) => args.onOut(String(msg)),
-    error: (msg: unknown) => args.onErr(String(msg))
-  }
-  try {
-    const compiled = Babel.transform(args.code, { presets: ['es2015'] }).code
-    const execFn = new Function('canvas', 'console', 'jsnx', compiled)
-    execFn(args.canvas, newConsole, jsnx)
-  } catch (err) {
-    args.onErr(String(err))
-  }
 }
 
 export const execute = (args: InitExecuteArgs): void => {

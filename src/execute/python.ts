@@ -1,6 +1,5 @@
 import { version as brythonVersion } from '../../brython/version.json'
 import { ExecuteArgs } from './execute'
-/// <reference path="../declarations/brython.d.ts"/>
 
 export const loadBrython = (onLoad: () => void): void => {
   const globalOnLoadId = '__brython_load__'
