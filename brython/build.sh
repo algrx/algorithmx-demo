@@ -2,11 +2,8 @@ script_dir="$( cd `dirname $0`; pwd -P )"
 brython_dir=$script_dir/_brython
 cd $script_dir
 
-# install brython
-python -m pip install -r requirements.txt
-
 # clean
-rm -rf _brython _dist
+rm -rf _brython _dist/*
 
 # build brython
 mkdir _brython && cd _brython
