@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const ConcatPlugin = require('webpack-concat-plugin')
-const CleanPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
@@ -74,7 +74,7 @@ const config = {
     new webpack.ProgressPlugin(),
     new webpack.ExtendedAPIPlugin(),
     new ExtractTextPlugin('[name].[hash].css'),
-    new CleanPlugin(['../public'], { allowExternal: true }),
+    new CleanWebpackPlugin(),
     new ConcatPlugin({
         name: 'brython',
         fileName: `[name].${brythonVersion}.js`,

@@ -6,11 +6,14 @@ import { ClosePopupProps, mapClosePopupToProps } from '../state/popup'
 import { PaneHeader } from './paneheader'
 import './popup.scss'
 
-interface PopupProps extends ClosePopupProps {
+type DispatchProps = ClosePopupProps
+
+interface OwnProps {
   readonly title: string
+  readonly children: React.ReactNode
 }
 
-const Popup: React.FC<PopupProps> = props => {
+const Popup: React.FC<DispatchProps & OwnProps> = props => {
   return (
     <div className='popup'>
       <div className='popup-window'>
@@ -23,7 +26,7 @@ const Popup: React.FC<PopupProps> = props => {
   )
 }
 
-export const PopupConnected = connect(
+export const PopupConnected = connect<{}, DispatchProps, OwnProps>(
   () => ({}),
   mapClosePopupToProps
 )(Popup)
