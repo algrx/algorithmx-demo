@@ -1,34 +1,23 @@
-language: python
+language: generic
 
-node_js:
-- "10"
+before_install:
+- git config --global user.email "travis@travis-ci.com"
+- git config --global user.name "Travis CI"
 
-python:
-- 3.6
+services:
+- docker
 
-cache:
-  directories:
-  - node_modules
-
-branches:
-  only:
-  - master
-
-install:
-- npm install
-
-jobs:
-  include:
-  - stage: build
-    script: npm run test && brython/install.sh && npm run build:prod
+script:
+- docker-compose run test
+- docker-compose run build
 
 deploy:
   provider: script
-  script: npx node scripts/deploy.js
-  skip_cleanup: true
+  script: echo "to deploy manually, run ./scripts/deploy.sh"
+  #script: ./scripts/deploy.js
+  cleanup: false
 
 env:
   global:
-  - GITHUB_REPO: "algrx/algorithmx-demo"
-  # GITHUB_TOKEN
-  - secure: "i3K9itYwULA6BzsYidx7xo5u7rJBXKdzP9WNLphRObnq7olfSZAHCTKeJHT1iRyAECWBKFXtHqR4bNbwgfQTF0YfOGu/pIJKk6XG6OjQmnJT4d5zUOXv19nUXL5ysCebPyTxxd7rMD/Si4q+CxH/VsgtyEnW9Rl0ukfQvFHTXMdUA0Oe/uBiQl/PddGH2k/AFuIpI5qDY/EbYorY/agDlWWWdY1NjiazjFgCLhIz72BqclC7V57x4aNPrOJkhLuHw1hBHlOcHGcCwNJF0arx2Cp+Q/LCEIrEXo/nz8TWeRbNlfTUoS31bt/5bBvdVNh15zFYqNWwFVorCvZbO8dWC+cnQi1VBY2qLeYZMupldJeghjZAJ1Uv3utXwLiiDrgngOhPTQIY2gvzQ3eIPquJBU7dM34Wj37c8dBYi0OxWLgDCee+gBb/gQwyYW8q5I/y0JLEIR2BCUBbNKc5XWoeLp5GZDD+Frnrj3w24gV2aOL0Fd7bLM2/RdLgRvTt3Kj7/bkqVR6e7qVKRcJ9sNBwMsdw6cL8w3Qiz6NH7bbshHIau0Hcv4wafnV+dXw2Z/xMRxSGsRa0TH3YPeZvcNMSS5UyX7SVWd80p7pnP+lni6sWQdUqm4+Q7E2RE5bQnjdPqfgZc6YUwKcSypO/4mPBz7QjbMH/BNRoDL91d/jR0C8="
+    # GITHUB_TOKEN
+  - secure: "wF5E4ktQzTKuAb5S41vCbP53mqOWGoPAodvA56NeDLT706+2qD5ZLJO+Fts4KzBahqFQ5vzRT1uGqwCk8LBVqTj3lPheSTcCtPdj1kOGj2+HiCkteCDRzhtt+GUT+SzhWrhHGRxtdFTfxw0fIGSsg+I1azo7pJ4goGfFdXjpOvX4n2aR3k9XZufZ0OdwxGEu/oRCSLYE/1RWogjqE/zs+n9Z2wATorl68AIkg+4t61AKxYIyEkX0ULqd3ML8Dgi6B6dx+sDMPujlkuTL7F+zDqydZUyL0qkGCawaJXYxf96hrupY94sPoN6YArZ9lBwsq+Ne+fnsd5KRuVuZv1bmNPYIUNkU1BdGSGuYinMFa2oKSwwQFzisuuZvGCoQYzwyxmOG75fDKwpNjZKnAV+/9BCGcGqsCALoI5++E1HIgqVN+BVuHm+2LiQpdvdfD3e646piwcVffSyrPnueciWmBWq3wKQi3lHhHiX9AFt07OzMQ56dxQXd+jQslNE5QbRuH3aRNYlNkrQgYxfRXP3ZTpzRN4ofE07eVBMebGlUUGU7+g5JziRlXYEqjCGgn0bonTKezK/30acANfvb0MfTpIHqlQEOLIz240CCIAaszIv7usdenRxcDGSbDb/Hu/Vz7IAu0YIjQFA7RK/N2CRUg8j/lugLCqAzz/qYlH0Fl0A="
