@@ -1,18 +1,18 @@
 [
-  {
-    "file": "dfs.js",
-    "name": "Depth First Search",
-    "author": {
-      "name": "Alex Socha",
-      "url": "https://github.com/alexsocha"
+    {
+        "file": "dfs.js",
+        "name": "Depth First Search",
+        "author": {
+            "name": "Alex Socha",
+            "url": "https://github.com/alexsocha"
+        }
+    },
+    {
+        "file": "mergesort.js",
+        "name": "Merge Sort",
+        "author": {
+            "name": "Alex Socha",
+            "url": "https://github.com/alexsocha"
+        }
     }
-  },
-  {
-    "file": "mergesort.js",
-    "name": "Merge Sort",
-    "author": {
-      "name": "Alex Socha",
-      "url": "https://github.com/alexsocha"
-    }
-  }
 ]

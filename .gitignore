@@ -2,10 +2,10 @@
 node_modules/
 
 # production
-public/
+dist/
 
 # brython
-brython/_*
+brython/dist/
 __pycache__/
 
 # misc

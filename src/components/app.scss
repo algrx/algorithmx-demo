@@ -1,68 +1,68 @@
 @import './variables.scss';
 
 html {
-  height: 100%;
-  background-color: $color-very-dark-gray;
+    height: 100%;
+    background-color: $color-very-dark-gray;
 }
 
 body {
-  height: 100%;
-  margin: 0px;
+    height: 100%;
+    margin: 0px;
 }
 
 .app {
-  height: 100%;
-  position: relative;
+    height: 100%;
+    position: relative;
 }
 
 .container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .split-container-x {
-  height: 100%;
-  margin-bottom: auto;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: row;
+    height: 100%;
+    margin-bottom: auto;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
 }
 .split-container-y {
-  height: 100%;
-  margin-bottom: auto;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
+    height: 100%;
+    margin-bottom: auto;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
 }
 
 .split {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 $gutter-drag-size: 5px;
 .gutter {
-  background-color: $color-very-dark-gray;
-  z-index: 10;
-  background-clip: content-box;
+    background-color: $color-very-dark-gray;
+    z-index: 10;
+    background-clip: content-box;
 
-  &.gutter-horizontal {
-    border-left: $gutter-drag-size solid transparent;
-    border-right: $gutter-drag-size solid transparent;
-    margin-left: -$gutter-drag-size;
-    margin-right: -$gutter-drag-size;
-    cursor: col-resize;
-  }
-  &.gutter-vertical {
-    border-top: $gutter-drag-size solid transparent;
-    border-bottom: $gutter-drag-size solid transparent;
-    margin-top: -$gutter-drag-size;
-    margin-bottom: -$gutter-drag-size;
-    cursor: row-resize;
-  }
+    &.gutter-horizontal {
+        border-left: $gutter-drag-size solid transparent;
+        border-right: $gutter-drag-size solid transparent;
+        margin-left: -$gutter-drag-size;
+        margin-right: -$gutter-drag-size;
+        cursor: col-resize;
+    }
+    &.gutter-vertical {
+        border-top: $gutter-drag-size solid transparent;
+        border-bottom: $gutter-drag-size solid transparent;
+        margin-top: -$gutter-drag-size;
+        margin-bottom: -$gutter-drag-size;
+        cursor: row-resize;
+    }
 }
 
 .toolbar-container {
-  display: flex;
+    display: flex;
 }

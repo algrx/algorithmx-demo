@@ -1,16 +1,18 @@
 @import './variables';
 
 .editor-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  .paneheader { flex-shrink: 0; }
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .paneheader {
+        flex-shrink: 0;
+    }
 }
 
 .editor {
-  background-color: $color-dark-gray;
-  flex-grow: 1;
-  font-family: $font-mono !important;
-  font-size: 0.9em !important;
-  font-weight: $font-weight-regular;
+    background-color: $color-dark-gray;
+    flex-grow: 1;
+    font-family: $font-mono !important;
+    font-size: 0.9em !important;
+    font-weight: $font-weight-regular;
 }

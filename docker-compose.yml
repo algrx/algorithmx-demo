@@ -1,25 +1,25 @@
-version: "3.7"
+version: '3.7'
 services:
-  build-python:
-    build:
-      context: .
-      target: install-python
-    volumes:
-    - "./brython/_dist:/app/brython/_dist"
-    command: bash ./brython/build.sh
+    build-python:
+        build:
+            context: .
+            target: install-python
+        volumes:
+            - './brython/_dist:/app/brython/_dist'
+        command: bash ./brython/build.sh
 
-  test:
-    build:
-      context: .
-      target: install-js
-    command: npm run test
+    test:
+        build:
+            context: .
+            target: install-js
+        command: npm run test
 
-  build:
     build:
-      context: .
-      target: install-js
-    volumes:
-    - "./public:/app/public"
-    depends_on:
-    - build-python
-    command: npm run build:prod
+        build:
+            context: .
+            target: install-js
+        volumes:
+            - './public:/app/public'
+        depends_on:
+            - build-python
+        command: npm run build:prod
