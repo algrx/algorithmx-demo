@@ -1,8 +1,7 @@
 {
-    "include": ["./src/**/*"],
-    "exclude": ["./src/examples/**/*"],
+    "exclude": ["node_modules", "./src/examples/**/*"],
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "module": "commonjs",
         "lib": ["es6", "dom"],
         "jsx": "react",
