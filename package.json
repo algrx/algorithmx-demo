@@ -3,14 +3,10 @@
     "version": "1.0.0",
     "description": "AlgorithmX online demo.",
     "scripts": {
-        "build:dev": "npx webpack --mode=development",
-        "build:dev:watch": "npm run build:dev -- --watch",
-        "serve:dev": "npx webpack-dev-server --mode=development --hot",
-        "build:prod": "npx webpack --mode=production",
-        "serve:prod": "npm run build:prod && live-server ./public",
+        "dev": "npx webpack serve --mode=development --hot",
+        "build": "npx webpack --mode=production",
         "format": "npx prettier --write --ignore-path .gitignore .",
-        "typecheck": "npx tsc --noEmit",
-        "start": "npm run serve:dev"
+        "typecheck": "npx tsc --noEmit"
     },
     "repository": {
         "type": "git",

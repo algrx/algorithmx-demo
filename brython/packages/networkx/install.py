@@ -32,7 +32,7 @@ replace_file(pjoin(path, 'generators', 'random_graphs.py'),
         lambda inner: re.sub('if 0 < deg < clique_degree',
                              'if 0 < deg and deg < clique_degree', inner)))
 
-# remove addiotional argument to next() (utils/misc.py/pairwise)
+# remove additional argument to next() (utils/misc.py/pairwise)
 replace_file(pjoin(path, 'utils', 'misc.py'),
     lambda f: replace_inner_fn(f, 'pairwise',
         lambda inner: re.sub('next\(b, None\)',

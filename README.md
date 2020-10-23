@@ -10,3 +10,10 @@ Online demo for <a href='https://github.com/algrx/algorithmx'>AlgorithmX</a>.
 ## Submitting Examples
 
 To submit your own example, create a pull request which adds a file to `src/examples/[language]`, and appends an entry to `src/examples/[language]/examples.json`.
+
+## Development
+
+-   Serve website: `npm run dev`
+-   Build website: `npm run build`
+-   Build brython bundle: `docker-compose up --build build-python`
+-   Build everything: `docker-compose up --build build`

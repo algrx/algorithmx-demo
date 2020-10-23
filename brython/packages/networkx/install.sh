@@ -1,15 +1,15 @@
 # delete non-python files
-find $1 -type f ! -name '*.py' -delete &> /dev/null
+find $1 -type f ! -name '*.py' -delete
 
 # delete tests
-find $1 -name 'tests' -exec rm -rf {} \; &> /dev/null
+find $1 -type d -name 'tests' -exec rm -rf {} +
 
 # delete unnecessary
 rm -rf $1/testing
 rm -rf $1/drawing
 rm -rf $1/readwrite
 rm -rf $1/linalg
-find $1/generators ! -name 'random_graphs.py' ! -name 'degree_seq.py' ! -name 'classic.py' -type f -exec rm -f {} \; &> /dev/null
+find $1/generators -type f ! -name 'random_graphs.py' ! -name 'degree_seq.py' ! -name 'classic.py' -delete
 rm -rf $1/algorithms
 
 base_dir=$PWD
