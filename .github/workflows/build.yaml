@@ -1,0 +1,23 @@
+name: build
+on: [push]
+
+jobs:
+    app:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+              with:
+                  persist-credentials: false
+
+            - name: Build container
+              run: docker-compose up --build build
+
+            - name: Deploy
+              uses: JamesIves/github-pages-deploy-action@3.7.1
+              if: github.ref == 'refs/heads/master'
+              with:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  BRANCH: gh-pages
+                  FOLDER: dist
+                  CLEAN: true

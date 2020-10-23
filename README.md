@@ -1,6 +1,6 @@
 # AlgorithmX Demo
 
-[![travis](https://travis-ci.com/algrx/algorithmx-demo.svg)](https://travis-ci.com/algrx/algorithmx-demo)
+![build](https://github.com/algrx/algorithmx-demo/workflows/build/badge.svg)
 
 Online demo for <a href='https://github.com/algrx/algorithmx'>AlgorithmX</a>.
 
