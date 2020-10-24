@@ -1,1 +1,1 @@
-declare module 'jsnetworkx' { }
+declare module 'jsnetworkx' {}

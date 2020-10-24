@@ -3,19 +3,35 @@
 $scrollbar-width: 10px;
 $scrollbar-height: 10px;
 @mixin scrollbar {
-  &::-webkit-scrollbar-corner {
-    background: $color-very-dark-gray;
-  }
-  &::-webkit-scrollbar-track {
-    background: $color-very-dark-gray;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: $color-gray
-  }
+    &::-webkit-scrollbar-corner {
+        background: $color-very-dark-gray;
+    }
+    &::-webkit-scrollbar-track {
+        background: $color-very-dark-gray;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: $color-gray;
+    }
 }
-@mixin scrollbar-x { @include scrollbar; &::-webkit-scrollbar { height: $scrollbar-height; } }
-@mixin scrollbar-y { @include scrollbar; &::-webkit-scrollbar { width: $scrollbar-width; } }
+@mixin scrollbar-x {
+    @include scrollbar;
+    &::-webkit-scrollbar {
+        height: $scrollbar-height;
+    }
+}
+@mixin scrollbar-y {
+    @include scrollbar;
+    &::-webkit-scrollbar {
+        width: $scrollbar-width;
+    }
+}
 
-.scrollbar { @include scrollbar; }
-.scrollbar-x { @include scrollbar-x; }
-.scrollbar-y { @include scrollbar-y; }
+.scrollbar {
+    @include scrollbar;
+}
+.scrollbar-x {
+    @include scrollbar-x;
+}
+.scrollbar-y {
+    @include scrollbar-y;
+}

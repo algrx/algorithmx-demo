@@ -1,22 +1,21 @@
 <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Brython demo</title>
+    </head>
 
-<head>
-<meta charset="utf-8">
-<title>Brython demo</title>
+    <body onload="brython({ indexedDB: false, debug: 1 })">
+        <script type="text/python">
+            import algorithmx
+            import networkx as nx
 
-</head>
+            G = nx.gnp_random_graph(20, 0.2, 440)
 
-<body onload="brython({ indexedDB: false, debug: 1 })">
-  <script type="text/python">
-      import algorithmx
-      import networkx as nx
+            print(G.nodes, G.edges)
+            print(algorithmx)
+        </script>
 
-      G = nx.gnp_random_graph(20, 0.2, 440)
-
-      print(G.nodes, G.edges)
-      print(algorithmx)
-  </script>
-
-  <script type="text/javascript" src="_brython/brython.js"></script>
-  <script type="text/javascript" src="_brython/brython_modules.js"></script>
-</body>
+        <script type="text/javascript" src="_brython/brython.js"></script>
+        <script type="text/javascript" src="_brython/brython_modules.js"></script>
+    </body>
+</html>

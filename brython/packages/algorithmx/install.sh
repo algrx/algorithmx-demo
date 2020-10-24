@@ -1,5 +1,5 @@
 # delete tests
-find $1 -name 'tests' -exec rm -rf {} \; &> /dev/null
+find $1 -type d -name 'tests' -exec rm -rf {} +
 
 # delete unnecessary
 rm -rf $1/main.py

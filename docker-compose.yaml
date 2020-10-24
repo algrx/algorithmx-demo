@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+    build-python:
+        build:
+            context: .
+            target: setup-python
+        volumes:
+            - './brython/dist:/app/brython/dist'
+        command: bash ./brython/build.sh
+
+    build:
+        build:
+            context: .
+            target: setup-js
+        volumes:
+            - './dist:/app/dist'
+        command: npm run build
