@@ -1,8 +1,6 @@
 import * as path from 'path';
 import * as webpack from 'webpack';
 import webpackMerge from 'webpack-merge';
-//import ConcatPlugin from 'webpack-concat-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import HtmlPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
@@ -71,15 +69,6 @@ const commonConfig: webpack.Configuration = {
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash:8].css',
         }) as webpack.WebpackPluginInstance,
-        new CleanWebpackPlugin(),
-        /*
-        new ConcatPlugin({
-            name: 'brython',
-            fileName: `[name].${brythonVersion}.js`,
-            filesToConcat: ['./brython/_dist/brython.js', './brython/_dist/brython_modules.js'],
-            injectType: 'none',
-        }),
-        */
         new HtmlPlugin({
             filename: 'index.html',
             template: './src/index.html',
