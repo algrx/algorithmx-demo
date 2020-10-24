@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as webpack from 'webpack';
+import MergeIntoSingleFilePlugin from 'webpack-merge-and-include-globally';
 import webpackMerge from 'webpack-merge';
 import HtmlPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -79,13 +80,20 @@ const commonConfig: webpack.Configuration = {
 };
 
 const brythonConfig: webpack.Configuration = {
-    entry: {
-        brython: ['./brython/dist/brython.js', './brython/dist/brython_modules.js'],
-    },
+    entry: {},
     output: {
         path: outputPath,
-        filename: `[name].${brythonVersion}.js`,
     },
+    plugins: [
+        new MergeIntoSingleFilePlugin({
+            files: {
+                [`brython.${brythonVersion}.js`]: [
+                    './brython/dist/brython.js',
+                    './brython/dist/brython_modules.js',
+                ],
+            },
+        }) as webpack.WebpackPluginInstance,
+    ],
     performance: {
         maxEntrypointSize: 3500 * 1000,
         maxAssetSize: 3500 * 1000,
