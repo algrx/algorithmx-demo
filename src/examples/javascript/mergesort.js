@@ -2,12 +2,6 @@
 
 const unsorted = [7, 3, 2, 6, 8, 5, 1, 4];
 
-const nodeStyle = {
-    shape: 'rect',
-    size: [30, 15],
-    fixed: true,
-};
-
 function nodePos(i, level) {
     const x = (i - (unsorted.length - 1) / 2) * 80;
     const y = -(level - Math.ceil(Math.log2(unsorted.length)) / 2) * 120;
@@ -39,9 +33,11 @@ function animateMerge(left, right, index, level) {
         .map((_, i) => nodeId(index + i, level));
 
     canvas.nodes(curIds).add({
-        ...nodeStyle,
+        shape: 'rect',
+        size: [30, 15],
+        fixed: true,
         pos: (_, i) => nodePos(index + i, level),
-        labels: { 0: { visible: false } }
+        labels: { 0: { visible: false } },
     });
 
     canvas
@@ -90,11 +86,16 @@ const topIds = Array(unsorted.length)
     .fill(0)
     .map((_, i) => nodeId(i, 0));
 
-canvas.nodes(topIds).data(unsorted).add({
-    ...nodeStyle,
-    pos: (_, i) => nodePos(i, 0),
-    labels: n => ({ 0: { text: n } })
-})
+canvas
+    .nodes(topIds)
+    .data(unsorted)
+    .add({
+        shape: 'rect',
+        size: [30, 15],
+        fixed: true,
+        pos: (_, i) => nodePos(i, 0),
+        labels: (n) => ({ 0: { text: n } }),
+    });
 
 canvas.pause(1);
 mergeSort(unsorted);

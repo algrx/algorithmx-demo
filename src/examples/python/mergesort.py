@@ -1,13 +1,8 @@
 # Merge Sort
+
 import math
 
 unsorted = [7, 3, 2, 6, 8, 5, 1, 4]
-
-node_style = {
-    'shape': 'rect',
-    'size': (30, 15),
-    'fixed': True
-}
 
 def node_pos(i, level):
     x = (i - (len(unsorted) - 1) / 2) * 80
@@ -35,7 +30,9 @@ def animate_merge(left, right, index, level):
     cur_ids = [node_id(index + i, level) for i in range(total_len)]
 
     canvas.nodes(cur_ids).add(
-        node_style,
+        shape='rect',
+        size=(30, 15),
+        fixed=True,
         pos=lambda _, i: node_pos(index + i, level),
         labels={0: {'visible': False }}
     )
@@ -80,7 +77,9 @@ canvas.pause(0.1)
 top_ids = [node_id(i, 0) for i in range(len(unsorted))]
 
 canvas.nodes(top_ids).data(unsorted).add(
-    node_style,
+    shape='rect',
+    size=(30, 15),
+    fixed=True,
     pos=lambda _, i: node_pos(i, 0),
     labels=lambda n: {0: {'text': n }}
 )

@@ -12,7 +12,6 @@ const originalMathRandom = Math.random;
 
 const makeSeedFn = (self: typeof Math): ((i: number) => void) => {
     return (i) => {
-        /* tslint:disable */
         const mask = 0xffffffff;
         let m_w = (123456789 + i) & mask;
         let m_z = (987654321 - i) & mask;
@@ -23,7 +22,6 @@ const makeSeedFn = (self: typeof Math): ((i: number) => void) => {
             result /= 4294967296;
             return result;
         };
-        /* tslint:enable */
     };
 };
 
@@ -33,10 +31,8 @@ export const executeJS = (args: ExecuteArgs): void => {
         log: (msg: unknown) => args.onOut(String(msg)),
         error: (msg: unknown) => args.onErr(String(msg)),
     };
-    /* tslint:disable */
     (Math as any).random = originalMathRandom;
     (Math as any).seed = makeSeedFn(Math);
-    /* tslint:enable */
     try {
         const compiled = Babel.transform(args.code, { presets: ['es2015'] }).code;
         const execFn = new Function('canvas', 'console', 'jsnx', compiled);
