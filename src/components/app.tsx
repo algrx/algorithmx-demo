@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Split from 'react-split';
 
 import { EditorConnected } from './editor';
-import { OutputConnected } from './output';
+import { Output } from './output';
 import { ConsoleConnected } from './console';
 import { ToolbarConnected } from './toolbar';
 import { OpenProjectConnected } from './openproject';
@@ -49,7 +49,7 @@ const App: React.FC<StateProps & DispatchProps> = (props) => {
                             onDrag={() => props.dispatchResize()}
                         >
                             <div className="split">
-                                <OutputConnected />
+                                <Output />
                             </div>
 
                             <div className="split">

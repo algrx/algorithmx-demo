@@ -29,3 +29,8 @@ RUN npm ci
 
 # copy built brython
 COPY --from=build-python /app/brython/dist ./brython/dist
+
+
+# === website ===
+FROM setup-js as website
+EXPOSE 9000

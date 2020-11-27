@@ -21,10 +21,10 @@ function animateMergeEdge(nodePrev, nodeCur, number, color) {
     const edge = [nodePrev, nodeCur];
 
     canvas.node(nodePrev).color(color);
-    canvas.edge(edge).add().directed(true);
+    canvas.edge(edge).add({ directed: true });
     canvas.pause(0.5);
 
-    canvas.edge(edge).traverse().duration(0.8).color(color).pause(0.2);
+    canvas.edge(edge).duration(0.8).traverse(color).pause(0.2);
     canvas.node(nodeCur).label().text(number).visible(true);
     canvas.pause(0.5);
 }
@@ -38,13 +38,11 @@ function animateMerge(left, right, index, level) {
         .fill(0)
         .map((_, i) => nodeId(index + i, level));
 
-    canvas
-        .nodes(curIds)
-        .add()
-        .set(nodeStyle)
-        .pos((n, i) => nodePos(index + i, level))
-        .label()
-        .visible(false);
+    canvas.nodes(curIds).add({
+        ...nodeStyle,
+        pos: (_, i) => nodePos(index + i, level),
+        labels: { 0: { visible: false } }
+    });
 
     canvas
         .edges(
@@ -91,14 +89,12 @@ canvas.pause(0.1);
 const topIds = Array(unsorted.length)
     .fill(0)
     .map((_, i) => nodeId(i, 0));
-canvas
-    .nodes(topIds)
-    .add()
-    .set(nodeStyle)
-    .pos((n, i) => nodePos(i, 0))
-    .data(unsorted)
-    .label()
-    .text((n) => n);
+
+canvas.nodes(topIds).data(unsorted).add({
+    ...nodeStyle,
+    pos: (_, i) => nodePos(i, 0),
+    labels: n => ({ 0: { text: n } })
+})
 
 canvas.pause(1);
 mergeSort(unsorted);

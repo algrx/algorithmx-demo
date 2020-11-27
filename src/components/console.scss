@@ -4,18 +4,17 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+
     .paneheader {
         flex-shrink: 0;
     }
 }
 
-.console-outer {
-    flex: auto;
-    background-color: $color-dark-gray;
-}
-
 .console {
     height: 100%;
+    width: 100%;
+    position: absolute;
     padding: 5px 10px 10px 10px;
     overflow-y: auto;
     background-color: $color-very-dark-gray;

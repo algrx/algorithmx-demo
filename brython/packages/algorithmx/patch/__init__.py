@@ -1,3 +1,3 @@
 from ._version import *
-from .graphics import *
+from .api import *
 from .networkx import *

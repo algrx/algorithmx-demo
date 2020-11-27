@@ -54,7 +54,7 @@ def animate_dfs():
             canvas.node(prev).color('green').pause(0.3)
 
         edge = (prev, cur)
-        canvas.edge(edge).traverse().color('green')
+        canvas.edge(edge).traverse('green')
         canvas.pan(node_pos(cur))
         canvas.pause(0.3)
 
@@ -67,7 +67,7 @@ def animate_dfs():
             prev = stack[len(stack) - 1]
 
             canvas.node(cur).color('red').pause(0.3)
-            canvas.edge((cur, prev)).traverse().color('red')
+            canvas.edge((cur, prev)).traverse('red')
             canvas.pan(node_pos(prev))
             canvas.pause(0.3)
 
@@ -84,9 +84,11 @@ def create_graph():
     node_coords = [(x, y) for x in range(maze_width)
         for y in range(maze_height)]
 
-    canvas.nodes(node_coords).add().fixed(True) \
-        .pos(lambda n: node_pos(n)) \
-        .label().text('')
+    canvas.nodes(node_coords).add(
+        fixed=True,
+        pos=lambda n: node_pos(n),
+        labels={0: {'remove': True}}
+    )
 
     canvas.nodes([maze_start, maze_end]).duration(0).color('blue')
 

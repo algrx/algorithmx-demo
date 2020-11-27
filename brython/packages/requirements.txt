@@ -1,2 +1,2 @@
-algorithmx>=1.0.0
-networkx==2.4.0
+algorithmx>=2.0.0
+networkx==2.5.0

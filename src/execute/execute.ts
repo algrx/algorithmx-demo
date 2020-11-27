@@ -1,11 +1,7 @@
+import { Canvas } from 'algorithmx';
+
 import { PLang } from '../state/plang';
-import {
-    AlgrXState,
-    CanvasSelection,
-    EventHandler,
-    createEventHandler,
-    createCanvasSelection,
-} from './algorithmx';
+import { AlgrXState } from './algorithmx';
 import { executeJS } from './javascript';
 import { executePython } from './python';
 import { ensureExecuteId } from './utils';
@@ -22,21 +18,16 @@ export interface InitExecuteArgs {
 
 export interface ExecuteArgs {
     readonly code: string;
-    readonly canvas: CanvasSelection;
-    readonly client: EventHandler;
+    readonly canvas: Canvas;
     readonly executeId: string;
     readonly onOut: (msg: string) => void;
     readonly onErr: (msg: string) => void;
 }
 
 export const execute = (args: InitExecuteArgs): void => {
-    const client = createEventHandler(args.algrxState, args.executeId, args.onUpdate);
-    const canvas = createCanvasSelection(client);
-
     const executeArgs: ExecuteArgs = {
         code: args.code,
-        canvas,
-        client,
+        canvas: args.algrxState.canvas,
         executeId: args.executeId,
         onOut: ensureExecuteId(args.executeId, args.onOut),
         onErr: ensureExecuteId(args.executeId, args.onErr),

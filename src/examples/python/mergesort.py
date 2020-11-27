@@ -24,7 +24,7 @@ def animate_merge_edge(node_prev, node_cur, number, color):
     canvas.edge(edge).add().directed(True)
     canvas.pause(0.5)
 
-    canvas.edge(edge).traverse().duration(0.8).color(color).pause(0.2)
+    canvas.edge(edge).duration(0.8).traverse(color).pause(0.2)
     canvas.node(node_cur).label().text(number).visible(True)
     canvas.pause(0.5)
 
@@ -34,10 +34,11 @@ def animate_merge(left, right, index, level):
     prev_ids = [node_id(index + i, level - 1) for i in range(total_len)]
     cur_ids = [node_id(index + i, level) for i in range(total_len)]
 
-    canvas.nodes(cur_ids).add() \
-        .set(node_style) \
-        .pos(lambda n, i: node_pos(index + i, level)) \
-        .label().visible(False)
+    canvas.nodes(cur_ids).add(
+        node_style,
+        pos=lambda _, i: node_pos(index + i, level),
+        labels={0: {'visible': False }}
+    )
 
     canvas.edges([(cur_ids[i], cur_ids[i + 1])
         for i in range(len(cur_ids) - 1)]).add()
@@ -77,11 +78,12 @@ def merge_sort(array, index=0, level=None):
 
 canvas.pause(0.1)
 top_ids = [node_id(i, 0) for i in range(len(unsorted))]
-canvas.nodes(top_ids).add() \
-    .set(node_style) \
-    .pos(lambda n, i: node_pos(i, 0)) \
-    .data(unsorted).label() \
-        .text(lambda n: n)
+
+canvas.nodes(top_ids).data(unsorted).add(
+    node_style,
+    pos=lambda _, i: node_pos(i, 0),
+    labels=lambda n: {0: {'text': n }}
+)
 
 canvas.pause(1)
 merge_sort(unsorted)

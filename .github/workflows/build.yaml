@@ -10,7 +10,7 @@ jobs:
               with:
                   persist-credentials: false
 
-            - name: Build container
+            - name: Build
               run: docker-compose up --build build
 
             - name: Deploy

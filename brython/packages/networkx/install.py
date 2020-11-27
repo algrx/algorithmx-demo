@@ -15,7 +15,7 @@ replace_files(all_py, lambda f: re.sub(
 
 # remove invalid import (utils/decorators.py)
 replace_file(pjoin(path, 'utils', 'decorators.py'),
-    lambda f: re.sub('from pathlib import Path', 'raise ImportError', f))
+    lambda f: re.sub('from pathlib import Path', 'Path = None', f))
 
 # fix relative import (utils/rcm.py)
 replace_file(pjoin(path, 'utils', 'rcm.py'),

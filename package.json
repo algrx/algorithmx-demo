@@ -4,6 +4,7 @@
     "description": "AlgorithmX online demo.",
     "scripts": {
         "dev": "npx webpack serve --mode=development --hot",
+        "prod": "npx webpack serve --mode=production --host 0.0.0.0 --port 9000",
         "build": "npx webpack --mode=production",
         "format": "npx prettier --write --ignore-path .gitignore .",
         "typecheck": "npx tsc --noEmit"
@@ -27,7 +28,7 @@
         "@fortawesome/free-solid-svg-icons": "5.15.1",
         "@fortawesome/react-fontawesome": "0.1.11",
         "@types/react-redux": "7.1.9",
-        "algorithmx": "^1.1.2",
+        "algorithmx": "^2.0.1",
         "brace": "0.11.1",
         "jsnetworkx": "0.3.4",
         "react": "16.14.0",

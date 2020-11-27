@@ -7,7 +7,6 @@ import { faPlay, faPause, faSyncAlt, faSpinner } from '@fortawesome/free-solid-s
 import {
     AlgrXState,
     initAlgrx,
-    resetAlgrx,
     pauseCanvas,
     resumeCanvas,
 } from '../execute/algorithmx';
@@ -66,7 +65,7 @@ const dispatchExecute = (props: StateProps & ExecuteDispatchProps): void => {
     } else triggerExecute(algrxState, executeId, props);
 };
 
-const Output: React.FC<StateProps & ExecuteDispatchProps> = (props) => {
+const OutputFC: React.FC<StateProps & ExecuteDispatchProps> = (props) => {
     const loading =
         props.curPLang === PLang.Python &&
         props.executeState.running &&
@@ -123,7 +122,7 @@ const Output: React.FC<StateProps & ExecuteDispatchProps> = (props) => {
     );
 };
 
-export const OutputConnected = connect<StateProps, ExecuteDispatchProps, {}, RootState>(
+export const Output = connect<StateProps, ExecuteDispatchProps, {}, RootState>(
     (state) => ({
         curPLang: state.pLang,
         getCode: () => {
@@ -133,4 +132,4 @@ export const OutputConnected = connect<StateProps, ExecuteDispatchProps, {}, Roo
         executeState: state.executeState,
     }),
     mapExecuteDispatchToProps
-)(Output);
+)(OutputFC);

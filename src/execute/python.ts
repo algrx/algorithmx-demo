@@ -3,7 +3,6 @@ import { ExecuteArgs } from './execute';
 
 export const loadBrython = (onLoad: () => void): void => {
     const globalOnLoadId = '__brython_load__';
-    /* tslint:disable */
     (window as any)[globalOnLoadId] = onLoad;
     let el = document.createElement('script');
     el.type = 'text/javascript';
@@ -11,7 +10,6 @@ export const loadBrython = (onLoad: () => void): void => {
     document.head.append(el);
 
     el.onload = () => {
-        /* tslint:enable */
         brython({ indexedDB: true });
         const loadScript = `
 from browser import window
@@ -33,10 +31,9 @@ const createOutput = (onOut: (msg: string) => void): BrythonOutput => ({
 });
 
 export const executePython = (args: ExecuteArgs): void => {
-    const globalClientId = '__algorithmx_client__';
+    const globalCanvasId = '__algorithmx_canvas__';
     const globalCodeId = '__algorithmx_code__';
-    /* tslint:disable */
-    (window as any)[globalClientId] = args.client;
+    (window as any)[globalCanvasId] = args.canvas;
     (window as any)[globalCodeId] = args.code;
     __BRYTHON__.stdout = createOutput(args.onOut);
     __BRYTHON__.stderr = createOutput(args.onErr);
@@ -48,24 +45,17 @@ export const executePython = (args: ExecuteArgs): void => {
             args.onErr(errStr);
         }
     });
-    /* tslint:enable */
 
     const fullScript = `
 from browser import window
-from algorithmx import canvas_selection
+from algorithmx import create_canvas
 
-real_client = window['${globalClientId}']
+real_canvas = window['${globalCanvasId}']
 code = window['${globalCodeId}']
 
-class EventHandler:
-    def dispatch(self, event):
-        real_client.dispatch(event)
-
-    def subscribe(self, fn):
-        real_client.subscribe(fn)
-
-event_handler = EventHandler()
-canvas = canvas_selection('demo', event_handler)
+canvas = create_canvas()
+canvas.ondispatch(real_canvas.dispatch)
+real_canvas.onreceive(lambda e: canvas.receive(e.to_dict()))
 
 exec(code, globals(), {'canvas': canvas})
 `;

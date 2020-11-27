@@ -15,3 +15,11 @@ services:
         volumes:
             - './dist:/app/dist'
         command: npm run build
+
+    website:
+        build:
+            context: .
+            target: website
+        ports:
+            - '9000:9000'
+        command: npm run prod
