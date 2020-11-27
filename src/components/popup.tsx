@@ -13,7 +13,7 @@ interface OwnProps {
     readonly children: React.ReactNode;
 }
 
-const Popup: React.FC<DispatchProps & OwnProps> = (props) => {
+const PopupFC: React.FC<DispatchProps & OwnProps> = (props) => {
     return (
         <div className="popup">
             <div className="popup-window">
@@ -27,7 +27,7 @@ const Popup: React.FC<DispatchProps & OwnProps> = (props) => {
     );
 };
 
-export const PopupConnected = connect<{}, DispatchProps, OwnProps>(
+export const Popup = connect<{}, DispatchProps, OwnProps>(
     () => ({}),
     mapClosePopupToProps
-)(Popup);
+)(PopupFC);

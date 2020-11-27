@@ -2,11 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Split from 'react-split';
 
-import { EditorConnected } from './editor';
+import { Editor } from './editor';
 import { Output } from './output';
-import { ConsoleConnected } from './console';
-import { ToolbarConnected } from './toolbar';
-import { OpenProjectConnected } from './openproject';
+import { Console } from './console';
+import { Toolbar } from './toolbar';
+import { OpenProject } from './openproject';
 
 import { Popup, PopupState } from '../state/popup';
 import { RootState } from '../state/root';
@@ -25,7 +25,7 @@ interface StateProps {
     readonly popupState: PopupState;
 }
 
-const App: React.FC<StateProps & DispatchProps> = (props) => {
+const AppFC: React.FC<StateProps & DispatchProps> = (props) => {
     return (
         <>
             <div className="container">
@@ -37,7 +37,7 @@ const App: React.FC<StateProps & DispatchProps> = (props) => {
                     onDrag={() => props.dispatchResize()}
                 >
                     <div className="split">
-                        <EditorConnected />
+                        <Editor />
                     </div>
 
                     <div className="split" style={{ position: 'relative' }}>
@@ -53,18 +53,18 @@ const App: React.FC<StateProps & DispatchProps> = (props) => {
                             </div>
 
                             <div className="split">
-                                <ConsoleConnected />
+                                <Console />
                             </div>
                         </Split>
                     </div>
                 </Split>
                 <div className="toolbar-container">
-                    <ToolbarConnected />
+                    <Toolbar />
                 </div>
             </div>
             {props.popupState.isOpen ? (
                 props.popupState.popup === Popup.OpenProject ? (
-                    <OpenProjectConnected />
+                    <OpenProject />
                 ) : (
                     <></>
                 )
@@ -75,7 +75,7 @@ const App: React.FC<StateProps & DispatchProps> = (props) => {
     );
 };
 
-export const AppConnected = connect<StateProps, DispatchProps, {}, RootState>(
+export const App = connect<StateProps, DispatchProps, {}, RootState>(
     (state) => ({ popupState: state.popupState }),
     (dispatch) => ({ dispatchResize: () => dispatch({ type: AppActionType.Resize }) })
-)(App);
+)(AppFC);

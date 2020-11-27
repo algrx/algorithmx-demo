@@ -85,7 +85,7 @@ const initAce = (el: HTMLElement, state: EditorState, curPLang: PLang): AceState
     return { editor: editor, sessions: sessions };
 };
 
-const Editor: React.FC<StateProps & DispatchProps> = (props) => {
+const EditorFC: React.FC<StateProps & DispatchProps> = (props) => {
     return (
         <div className="editor-container">
             <PaneHeader title="EDITOR" buttons={[]} />
@@ -128,10 +128,10 @@ export const editorReducer: Reducer<EditorState> = (
     return state;
 };
 
-export const EditorConnected = connect<StateProps, DispatchProps, {}, RootState>(
+export const Editor = connect<StateProps, DispatchProps, {}, RootState>(
     (state) => ({ editorState: state.editorState, curPLang: state.pLang }),
     (dispatch) => ({
         dispatchInit: (aceState) => dispatch<ActionInit>({ type: EditorActionType.Init, aceState }),
         dispatchSave: () => dispatch({ type: EditorActionType.Save }),
     })
-)(Editor);
+)(EditorFC);

@@ -12,7 +12,7 @@ interface StateProps {
     readonly log: Log;
 }
 
-const Console: React.FC<StateProps> = (props) => {
+const ConsoleFC: React.FC<StateProps> = (props) => {
     return (
         <div className="console-container">
             <PaneHeader title="CONSOLE" buttons={[]} />
@@ -33,6 +33,6 @@ const Console: React.FC<StateProps> = (props) => {
     );
 };
 
-export const ConsoleConnected = connect<StateProps, {}, {}, RootState>((state) => ({
+export const Console = connect<StateProps, {}, {}, RootState>((state) => ({
     log: state.executeState.log,
-}))(Console);
+}))(ConsoleFC);

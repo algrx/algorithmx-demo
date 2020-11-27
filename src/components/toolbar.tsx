@@ -33,7 +33,7 @@ const PLangBtn: React.FC<ToolbarProps & PLangBtnProps> = (props) => {
     );
 };
 
-const Toolbar: React.FC<ToolbarProps> = (props) => {
+const ToolbarFC: React.FC<ToolbarProps> = (props) => {
     return (
         <div className="toolbar">
             <div className="toolbar-left">
@@ -59,4 +59,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
     ...mapOpenPopupToProps(dispatch),
 });
 
-export const ToolbarConnected = connect(mapStateToProps, mapDispatchToProps)(Toolbar);
+export const Toolbar = connect(mapStateToProps, mapDispatchToProps)(ToolbarFC);

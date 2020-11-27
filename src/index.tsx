@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { AppConnected, AppActionType } from './components/app';
+import { App, AppActionType } from './components/app';
 import { createStore } from './state/root';
 import { saveState } from './state/utils';
 
@@ -20,7 +20,7 @@ window.onbeforeunload = () => {
 
 render(
     <Provider store={store}>
-        <AppConnected />
+        <App />
     </Provider>,
     document.getElementById('app')
 );

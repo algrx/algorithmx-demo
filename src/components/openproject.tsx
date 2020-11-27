@@ -6,7 +6,7 @@ import { faFileCode } from '@fortawesome/free-solid-svg-icons';
 
 import { PLang, PLangName, PLangID } from '../state/plang';
 import { ClosePopupProps, mapClosePopupToProps } from '../state/popup';
-import { PopupConnected } from './popup';
+import { Popup } from './popup';
 import { RootState } from '../state/root';
 import './openproject.scss';
 
@@ -78,9 +78,9 @@ interface DispatchProps extends ClosePopupProps {
     readonly dispatchOpenProject: (pLang: PLang, file: string) => void;
 }
 
-const OpenProject: React.FC<StateProps & DispatchProps> = (props) => {
+const OpenProjectFC: React.FC<StateProps & DispatchProps> = (props) => {
     return (
-        <PopupConnected title={`${PLangName[props.curPLang]} Examples`}>
+        <Popup title={`${PLangName[props.curPLang]} Examples`}>
             <div className="openproject scrollbar-y">
                 <div className="openproject-inner">
                     {projectStore[props.curPLang].order.map((file) => {
@@ -118,15 +118,15 @@ const OpenProject: React.FC<StateProps & DispatchProps> = (props) => {
                     })}
                 </div>
             </div>
-        </PopupConnected>
+        </Popup>
     );
 };
 
-export const OpenProjectConnected = connect<StateProps, DispatchProps, {}, RootState>(
+export const OpenProject = connect<StateProps, DispatchProps, {}, RootState>(
     (root) => ({ curPLang: root.pLang }),
     (dispatch) => ({
         ...mapClosePopupToProps(dispatch),
         dispatchOpenProject: (pLang, file) =>
             dispatch<ActionOpenProject>({ type: ProjectActionType.Open, pLang, file }),
     })
-)(OpenProject);
+)(OpenProjectFC);
