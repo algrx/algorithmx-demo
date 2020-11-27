@@ -18,12 +18,10 @@ import { AppActionType } from './app';
 import './editor.scss';
 import './editor.theme.scss';
 
-/* tslint:disable */
 (Ace as any)['define']('ace/theme/custom', {
     isDark: true,
     cssClass: 'ace-theme',
 });
-/* tslint:enable */
 
 interface AceState {
     readonly editor: Ace.Editor;
@@ -73,12 +71,13 @@ const initAce = (el: HTMLElement, state: EditorState, curPLang: PLang): AceState
         return { ...result, [pLang]: createSession(pLang) };
     }, {} as AceState['sessions']);
 
-    /* tslint:disable */
     (editor.renderer as any).scrollBarV.width = 10;
     (editor.renderer as any).scrollBarH.height = 10;
     editor.$blockScrolling = Infinity;
-    (sessions[PLang.JS] as any).$worker.send('changeOptions', [{ asi: true }]); // allow no semicolons in JS
-    /* tslint:enable */
+
+    // options based on JSHint:
+    // - asi: allow no semicolons in JS
+    (sessions[PLang.JS] as any).$worker.send('changeOptions', [{ asi: true, esversion: 9 }]);
 
     editor.setTheme('ace/theme/custom');
     editor.setShowPrintMargin(false);
